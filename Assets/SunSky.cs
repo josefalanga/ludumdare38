@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SunSky : MonoBehaviour {
 
 	public GameObject sun;
