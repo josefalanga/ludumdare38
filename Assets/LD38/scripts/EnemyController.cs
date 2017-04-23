@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour {
 		if (!seeking)
 		{
 			//patrolling
-			transform.Rotate(transform.up, 0.2f);
+			transform.Rotate(transform.up, 2f);
 		}
 		else
 		{

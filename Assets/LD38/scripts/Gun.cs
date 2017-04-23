@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour {
 
 	public GameObject projectile;
+	public AudioSource pewpewpew;
 
 	float gunCooldown = 0.1f;
 	float timeSinceLastShot = 0;
@@ -16,6 +17,7 @@ public class Gun : MonoBehaviour {
 			timeSinceLastShot = 0;
 			GameObject m_projectile = GameObject.Instantiate(projectile,transform.position,Quaternion.identity);
 			m_projectile.GetComponent<Rigidbody>().AddForce(this.transform.forward * 1500);	
+			pewpewpew.Play();
 		}			
 	}
 
