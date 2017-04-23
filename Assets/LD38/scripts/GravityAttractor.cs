@@ -5,7 +5,7 @@ using UnityEngine;
 public class GravityAttractor : MonoBehaviour {
 
 	public float gravityOnCenter = -9.8f;
-	List<Rigidbody> bodiesInRange = new List<Rigidbody>();
+	public List<Rigidbody> bodiesInRange = new List<Rigidbody>();
 	
 	void FixedUpdate()
 	{
@@ -16,6 +16,7 @@ public class GravityAttractor : MonoBehaviour {
 				bodiesInRange.RemoveAt(i);
 			}
 			Attract(bodiesInRange[i]);
+			AlignToPlanetCenter(bodiesInRange[i].transform);
 		}
 	}
 
@@ -36,6 +37,7 @@ public class GravityAttractor : MonoBehaviour {
 	}
 
 	public void Attract(Rigidbody body) {
+
 		body.constraints = RigidbodyConstraints.FreezeRotation;
 		Vector3 gravityUp = (body.position - transform.position).normalized;
 		Vector3 localUp = body.transform.up;
@@ -43,8 +45,14 @@ public class GravityAttractor : MonoBehaviour {
 		float gravityStrenght = gravityOnCenter / (Vector3.Distance(body.transform.position,this.transform.position) + 0.1f);
 		
 		// Apply downwards gravity to body
-		body.AddForce(gravityUp * gravityStrenght);
-		// Allign bodies up axis with the centre of planet
-		body.rotation = Quaternion.FromToRotation(localUp,gravityUp) * body.rotation;
+		body.AddForce(gravityUp * gravityStrenght);		
 	}  
+
+	public void AlignToPlanetCenter(Transform m_transform) {
+		Vector3 gravityUp = (m_transform.position - transform.position).normalized;
+		Vector3 localUp = m_transform.transform.up;	
+
+		// Allign bodies up axis with the centre of planet
+		m_transform.rotation = Quaternion.FromToRotation(localUp,gravityUp) * m_transform.rotation;
+	}
 }
