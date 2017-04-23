@@ -12,15 +12,28 @@ public class Enemy : Entity
 
     protected override void OnDeath()
     {
-        Destroy(this.gameObject);
+		if (!isded)
+		{
+			isded = true;
+			Destroy(this.gameObject);			
+		}        
     }
 
 	void OnCollisionEnter(Collision other)
 	{
 		if(other.gameObject.CompareTag("Player"))
 		{
-			other.gameObject.GetComponent<Entity>().TakeDamage(50);
+			other.gameObject.GetComponent<Entity>().TakeDamage(30);
 		}
+	}
+
+
+	void OnCollisionStay(Collision other)
+	{
+		if(other.gameObject.CompareTag("Player"))
+		{
+			GetComponent<Rigidbody>().AddForce(transform.forward*-50);
+		}		
 	}
 
 	void OnDestroy()
