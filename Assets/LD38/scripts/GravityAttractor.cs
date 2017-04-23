@@ -9,9 +9,13 @@ public class GravityAttractor : MonoBehaviour {
 	
 	void FixedUpdate()
 	{
-		foreach(Rigidbody body in bodiesInRange)
+		for (int i = 0; i < bodiesInRange.Count;i++)
 		{
-			Attract(body);
+			while (bodiesInRange[i] == null)
+			{
+				bodiesInRange.RemoveAt(i);
+			}
+			Attract(bodiesInRange[i]);
 		}
 	}
 
