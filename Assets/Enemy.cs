@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+	void Awake()
+	{
+		GlobalScope.EnemiesLeft += 1;
+	}
+
     protected override void OnDeath()
     {
         Destroy(this.gameObject);
@@ -16,5 +21,10 @@ public class Enemy : Entity
 		{
 			other.gameObject.GetComponent<Entity>().TakeDamage(50);
 		}
+	}
+
+	void OnDestroy()
+	{
+		GlobalScope.EnemiesLeft -= 1;
 	}
 }

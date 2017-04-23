@@ -24,7 +24,6 @@ public class GravityAttractor : MonoBehaviour {
 		if (other.attachedRigidbody != null)
 		{
 			bodiesInRange.Add(other.attachedRigidbody);
-			other.attachedRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 	}
 
@@ -33,11 +32,11 @@ public class GravityAttractor : MonoBehaviour {
 		if (other.attachedRigidbody != null)
 		{
 			bodiesInRange.Remove(other.attachedRigidbody);
-			other.attachedRigidbody.constraints = RigidbodyConstraints.None;
 		}
 	}
 
 	public void Attract(Rigidbody body) {
+		body.constraints = RigidbodyConstraints.FreezeRotation;
 		Vector3 gravityUp = (body.position - transform.position).normalized;
 		Vector3 localUp = body.transform.up;
 
