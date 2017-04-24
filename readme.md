@@ -14,6 +14,6 @@ FL Studio 10
 
 # Links
 
-> [http://gamejolt.com/games/protoware-planet/251707](URL "Ludum Dare Page")
+[Ludum Dare Page](https://ldjam.com/events/ludum-dare/38/protoware-planet)
 
-> [http://gamejolt.com/games/protoware-planet/251707](URL "Play on GameJolt")
+[Play on GameJolt](http://gamejolt.com/games/protoware-planet/251707)
