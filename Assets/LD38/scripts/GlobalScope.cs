@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameAnalyticsSDK;
+using UnityEngine.SceneManagement;
 
 public class GlobalScope : MonoBehaviour {
 	public static GameObject planet
@@ -17,7 +19,12 @@ public class GlobalScope : MonoBehaviour {
 			return enemiesLeft;
 		}
 		set{
-			enemiesLeft = enemiesLeft < 0 ? 0 : value;			
+			enemiesLeft = enemiesLeft < 0 ? 0 : value;		
 		}
+	}
+
+	void Start()
+	{
+		GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "Round");
 	}
 }

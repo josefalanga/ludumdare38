@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using GameAnalyticsSDK;
 
 public class PlayerEntity : Entity {
 
@@ -12,6 +13,7 @@ public class PlayerEntity : Entity {
 		{
 			isded = true;
 			Debug.Log("player death");
+			GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, "Round");	
        		GetComponent<Rigidbody>().AddForce(this.transform.up * 5000);
 			OnDeathExtra.Invoke();			
 		}		
@@ -23,5 +25,13 @@ public class PlayerEntity : Entity {
 		{
 			GetComponent<Rigidbody>().AddForce(transform.forward*-100);
 		}		
+	}	
+
+	void OnDestroy()
+	{
+		if (GlobalScope.EnemiesLeft == 0 && !isded)
+		{
+			GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "Round");	
+		}
 	}
 }

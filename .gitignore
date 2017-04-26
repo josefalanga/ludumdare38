@@ -28,3 +28,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+/Assets/Resources/GameAnalytics/Settings.asset
+/Assets/Resources/GameAnalytics/Settings.asset.meta
